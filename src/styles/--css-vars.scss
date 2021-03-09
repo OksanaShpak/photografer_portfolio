@@ -1,0 +1,37 @@
+body{
+
+    // breakpoint
+    /*
+        br1 > 1800px
+        br2 > 1500px
+        br2-1 > 1250px ---- 1200px | 1250px | 1300px
+        br3 > 1024px
+        br4 > 768px
+        br5 > 450px
+    */
+
+    --baseline: 25px;
+    --subline: 5px;
+    --side-margin: 30px;
+
+    // culumn = 68px | gutter = 20px
+    --column1: 68px;
+    --column2: 156px;
+    --column3: 244px;
+    --column4: 332px; 
+
+    // кратность к baseline + subline
+    --spacing1: 50px; 
+    --spacing2: 80px; 
+    --spacing3: 125px; 
+    --spacing4: 150px; 
+
+    @media screen and (max-width: 1500px) {
+        --baseline: 20px;
+        --subline: 4px;
+    }
+    
+    @media screen and (max-width: 1024px) {
+        --side-margin: 25px;
+    }
+}

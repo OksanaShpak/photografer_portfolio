@@ -1,0 +1,20 @@
+:host{
+    @mixin position($position: relative, $top: unset, $right: unset, $bottom: unset, $left: unset) {
+        // oksana TODO review and update mixins
+        // @if $position == 'relative' { font-size: 50px; }
+        position: $position;
+        top: $top;
+        right: $right;
+        bottom: $bottom;
+        left: $left;
+    }
+    @mixin push--auto {
+        margin: { 
+            left: auto;
+            right: auto;
+        }
+    }
+    >*{
+        @include position();
+    }
+}

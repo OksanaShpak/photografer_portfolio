@@ -1,0 +1,45 @@
+@import './font-mixins.scss';
+
+.font-base {
+    @include base-font();
+}
+
+.photografer-heading-1 {
+    @include photografer-heading-1();
+}
+
+.photografer-heading-2 {
+    @include photografer-heading-2();
+}
+
+.photografer-heading-3 {
+    @include photografer-heading-3();
+}
+
+.photographer-uppercase-headin {
+    @include photographer-uppercase-heading();
+}
+
+.photographer-base-text {
+    @include photographer-base-text();
+}
+
+
+.font-smoothing,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+li,
+ol,
+pre,
+a,
+input,
+div {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

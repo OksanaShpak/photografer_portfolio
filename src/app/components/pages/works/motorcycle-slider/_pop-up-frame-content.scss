@@ -1,0 +1,30 @@
+>.header__pop-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 10px 10px 0 0;
+
+    >.header__pop-up-btn {
+        width: 21px;
+        height: 21px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        >svg {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+        }
+    }
+}
+
+>.footer__pop-up {
+    text-align: right;
+    margin-right: 16px;
+}

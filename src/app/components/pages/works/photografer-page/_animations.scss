@@ -1,0 +1,17 @@
+.y-axis{
+    opacity: 0;
+    transform: translateY(var(--scroll-animation-size));
+    &.enter{
+        animation: scroll-from-bottom .9s ease-out forwards;
+        @keyframes scroll-from-bottom {
+            0%{
+                opacity: 0;
+                transform: translateY(var(--scroll-animation-size));
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+    }
+}

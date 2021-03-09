@@ -1,0 +1,149 @@
+<div [ngClass]="{'page-wrapper': true, 'is-swiping': isSwiping}">
+    <header #header>
+        <h1>Media Joke</h1>
+        <div [ngClass]="{'dots': true, 'pop-up-in-view': isPopUpInView}" (click)="popUpToggle()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="header-btn">
+                <span class="ver"></span>
+                <span class="hor"></span>
+            </div>
+        </div>
+
+        <ul class="socials">
+            <li><a href="https://www.facebook.com/">Fb</a></li>
+            <li><a href="https://www.behance.net/">Be</a></li>
+            <li><a href="https://www.instagram.com/">In</a></li>
+        </ul>
+    </header>
+
+    <div class="slider-wrapper">
+        <div class="left-navigation">
+            <ul>
+                <li *ngFor="let slide of slides; let i = index" [ngClass]="{'active': i === activeSlideId}">
+                    {{i > 9 ? i + 1 : '0' + (i + 1)}}
+                    <!-- same -->
+                    <!-- '0' + (i + 1) -->
+                    <!-- `0${i +1}` -->
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul class="slide-items" #slider>
+                <!-- 'next': i === activeSlideId + 1 -->
+                <li *ngFor="let slide of slides; let i = index" [ngClass]="{
+                        'current': i === activeSlideId,
+                        'previous': slides.length > 1 ?
+                                    activeSlideId === 0 && i === slides.length - 1 ? true
+                                    : activeSlideId === slides.length - 1 && i === 0 ? false
+                                    : i === activeSlideId - 1 ? true : false
+                                    : false,
+                        'next': slides.length > 1 ?
+                                activeSlideId === slides.length - 1 && i === 0 ? true
+                                : activeSlideId === 0 && i === slides.length - 1 ? false
+                                : i === activeSlideId + 1 ? true : false
+                                : false
+                    }">
+                    <img [attr.src]="slide.imagePath">
+                    <p>{{slide.subtitle}}</p>
+                    <h2>{{slide.title}}</h2>
+                </li>
+            </ul>
+        </div>
+
+        <div class="drag-CTA-wrapper" #swipeArea>
+            <div [ngClass]="{'drag-CTA': true, 'in-drag': isInDrag}" #dragCTA>
+                <span>DRAG</span>
+            </div>
+        </div>
+    </div>
+
+    <footer #footer>
+        <!-- svg place -->
+    </footer>
+
+    <div [ngClass]="{'pop-up-wrapper': true, 'in-view': isPopUpInView}">
+
+        <!-- <div class="top-row">
+            <div class="cta">
+                <img src="" alt="">
+                <p>close</p>
+            </div>
+        </div> -->
+
+        <div class="content-wrapper">
+            <div class="header__pop-up">
+                <div class="header__pop-up-btn">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001"
+                        style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+			L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+			c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+			L284.286,256.002z" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <p>close</p>
+            </div>
+            <div class="pop-up__content">
+                <ul>
+                    <li>
+                        <span class="marker">01</span>
+                        <a class="item" href="#" data-content="Harley Davidson">Harley Davidson</a>
+                    </li>
+                    <li>
+                        <span class="marker">02</span>
+                        <a class="item" href="#" data-content="Herschel">Herschel</a>
+                    </li>
+                    <li>
+                        <span class="marker">03</span>
+                        <a class="item" href="#" data-content="Louis Vuitton">Louis Vuitton</a>
+                    </li>
+                    <li>
+                        <span class="marker">04</span>
+                        <a class="item" href="#" data-content="Tesla Model X">Tesla Model X</a>
+                    </li>
+                    <li>
+                        <span class="marker">05</span>
+                        <a class="item" href="#" data-content="Samsung S3">Samsung S3</a>
+                    </li>
+                </ul>
+                <div class="about">
+                    <div class="text-pair">
+                        <h3>Agency</h3>
+                        <p>We design brands and experience that drive growth and innovation across mediums and new
+                            technologies.</p>
+                        <a class="agency-link" target="_blank"
+                            href="https://dribbble.com/shots/8842067-Drag-Carousel-and-Menu-Animation">discover more</a>
+                    </div>
+                    <div class="text-pair">
+                        <h3>Copenghen</h3>
+                        <address>
+                            1480 Pinnickinick Street<br>
+                            Washington - 98052
+                        </address>
+                        <a class="phone" href="tel:+453608146444">360-814-6444</a>
+                        <a class="agency-link" target="_blank"
+                            href="https://dribbble.com/shots/8842067-Drag-Carousel-and-Menu-Animation">let's
+                            talk</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__pop-up">
+                <span>Credits</span>
+            </div>
+        </div>
+    </div>
+</div>

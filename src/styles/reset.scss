@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    &.no-scroll{
+        height: 100%;
+        >body{
+            height: inherit;
+            >app-root{
+                height: inherit;
+            }
+        }
+    }
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-size: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-width: 320px;
+    color: #fff;
+    font-family: 'Piazzolla', serif;
+    font-size: 17px;
+    line-height: 26px;
+}

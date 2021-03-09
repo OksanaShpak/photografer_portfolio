@@ -1,0 +1,344 @@
+// import component-reset.scss
+
+:host {
+  height: 100vh;
+  width: 100vw;
+  perspective: 1px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: block;
+
+  a,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  span {
+    color: black;
+  }
+
+  .container {
+    max-width: 1230px;
+    padding: 0 15px;
+    margin: 0 auto;
+    position: relative;
+
+    .header {
+      z-index: 1;
+      position: sticky;
+      top: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 30px;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100vw;
+        background-color: rgba(255, 255, 255, .5);
+        backdrop-filter: blur(5px);
+      }
+
+      .logo,
+      .menu {
+        position: relative;
+      }
+
+      .logo {
+        margin-right: auto;
+        margin-top: calc(var(--baseline) - var(--subline) *2);
+        cursor: pointer;
+        padding: calc(var(--subline) * 2);
+        // margin-top: calc(var(--subline) * 5 + 3px);
+
+        >img {
+          height: auto;
+          width: 70px;
+        }
+      }
+
+      .menu {
+        &__list-item {
+          display: inline-block;
+          cursor: pointer;
+
+          &:not(:first-child) {
+            padding-left: var(--baseline);
+          }
+        }
+
+        &__list-link {
+          transition: all .5s;
+        }
+
+        &__list-link:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .main {
+      margin: 100px 140px 0px;
+
+      &__text-pair {
+        >h1 {
+          margin-bottom: var(--baseline);
+        }
+
+        >p {
+          width: 60%;
+        }
+      }
+    }
+
+    .portfolio {
+      position: relative;
+      margin-top: 364px;
+
+      &__title {
+        transform: rotate(-90deg) translateX(-0.7em);
+        transform-origin: 0% 0%;
+        display: flex;
+
+        &-line {
+          margin: auto 20px auto 0px;
+          width: 65px;
+          height: 1px;
+          background-color: grey;
+        }
+
+        .photografer-heading-2 {
+          line-height: .7em;
+          color: grey;
+        }
+      }
+
+      //
+      // gallery styles
+      //
+      &__inner {
+        display: flex;
+        width: 100%;
+      }
+
+      &__left-side,
+      &__right-side {
+        width: 50%;
+
+        &-photo {
+          position: relative;
+          width: 100%;
+
+          &:before {
+            content: '';
+            display: block;
+          }
+
+          >img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            &:last-child {
+              opacity: 1;
+              transition: opacity .6s ease-in;
+            }
+          }
+
+          &:hover {
+            >img:last-child {
+              opacity: 0;
+            }
+          }
+        }
+
+        &-body {
+          display: flex;
+          margin-top: 10px;
+        }
+
+        &-information {
+          margin-left: 10%;
+        }
+      }
+
+      // 
+      // left side block
+      // 
+      &__left-side {
+        &-wrapper {
+          width: 100%;
+        }
+
+        &-photo {
+          &:before {
+            padding-top: 124%;
+          }
+        }
+      }
+
+      // 
+      // right side block
+      // 
+      &__right-side {
+        &-wrapper {
+          width: 80%;
+          margin: 400px 0px 0px 20%;
+        }
+
+        &-photo {
+          &:before {
+            padding-top: 141.6%;
+          }
+        }
+      }
+    }
+
+    .about {
+      margin-top: 200px;
+      position: relative;
+      width: 100%;
+
+      &__substrate {
+        width: 45%;
+        height: 65%;
+        background-color: black;
+        position: absolute;
+        right: 0;
+        transform: translateZ(0.2px) scale(.8);
+      }
+
+      &__inner {
+        position: relative;
+        padding-top: 50px;
+        display: flex;
+        width: 100%;
+
+        &-left-side {
+          width: 30%;
+
+          &-wrapper {
+            width: 100%;
+          }
+        }
+
+        &-right-side {
+          width: 70%;
+
+          &-wrapper {
+            width: 70%;
+          }
+
+          &-photo {
+            position: relative;
+            width: 100%;
+            padding-top: 125%;
+
+            &:before {
+              content: '';
+              display: block;
+            }
+
+            >img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+
+              &:last-child {
+                opacity: 1;
+                transition: opacity .6s ease-in;
+              }
+            }
+
+            &:hover {
+              >img:last-child {
+                opacity: 0;
+              }
+            }
+          }
+        }
+
+        &-information {
+          width: 100%;
+          margin-top: 20px;
+
+          >p {
+            column-count: 2;
+            column-gap: 20px;
+          }
+        }
+      }
+    }
+
+    .contact {
+      padding-top: 100px;
+
+      &__inner {
+        display: flex;
+        width: 100%;
+
+        &-right-side,
+        &-left-side {
+          width: 50%;
+        }
+
+        &-right-side {
+          margin-top: 180px;
+        }
+
+        &-left-side {
+          margin-top: 125px;
+
+          &-info {
+            margin-left: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+
+            &-box {
+              margin-bottom: 48px;
+            }
+
+            &-heading {
+              margin-bottom: 20px;
+            }
+
+            &-text {
+              font-size: 18px;
+              line-height: 28px;
+            }
+
+            &-social>a+a {
+              margin-left: 19px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes image-background {
+    0% {
+      width: 100%;
+    }
+
+    100% {
+      width: 10%;
+    }
+  }
+
+  @import './media';
+  @import './animations';
+}

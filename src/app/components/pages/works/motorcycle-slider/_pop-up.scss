@@ -1,0 +1,152 @@
+>.pop-up-wrapper {
+
+    height: 100%;
+    overflow: hidden; //position absolute t0 b0 r0 l0
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(36, 35, 36, 1);
+    z-index: 10;
+    opacity: 0;
+    transition: opacity .3s ease-out 0.6s;
+
+    &:not(.in-view) {
+        // display: none;
+        pointer-events: none;
+    }
+
+    &.in-view {
+        // display: block;
+        opacity: 1;
+    }
+
+    >.content-wrapper {
+        padding: 0 15px;
+        margin-top: 20px; //исправить display flex, flex direction column 
+
+        @import './pop-up-frame-content';
+
+        >.pop-up__content {
+            margin-bottom: 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 80px 60px 0 50px;
+
+            >ul {
+                >li {
+                    display: flex;
+                    margin-bottom: calc(var(--subline) * 2);
+                    color: grey;
+
+                    &:not(:last-child) {
+                        margin-bottom: var(--baseline);
+                    }
+
+
+                    >span {
+                        text-align: center;
+                        color: grey;
+                        height: fit-content;
+                        margin: auto 15px auto 0;
+                        transition: color .6s ease-out .3s;
+                    }
+
+                    >.item {
+                        position: relative;
+                        display: inline-block;
+                        font-weight: 600;
+                        font-size: 60px;
+                        line-height: 1.2em;
+                        color: grey;
+                        overflow: hidden;
+
+                        &::before {
+                            position: absolute;
+                            content: attr(data-content);
+                            top: 0;
+                            left: 0;
+                            width: 0;
+                            color: white;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            transition: width 1s ease;
+                        }
+                    }
+
+                    &:hover {
+                        >span {
+                            color: white;
+                        }
+
+                        >.item::before {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            >.about {
+                width: 300px;
+
+                >.text-pair {
+                    margin-bottom: 34px;
+
+                    >h3 {
+                        font-weight: 600;
+                        font-size: 28px;
+                        line-height: 42px;
+                        letter-spacing: 0.5px;
+                    }
+
+                    >p {
+                        font-size: 22px;
+                        line-height: 33px;
+                        letter-spacing: 0.5px;
+                        padding-left: 15px;
+                        margin-bottom: 15px;
+                        color: grey;
+                    }
+
+                    >.agency-link {
+                        text-transform: uppercase;
+                        padding-left: 15px;
+                        font-size: 14px;
+                        line-height: 21px;
+                        letter-spacing: 0.5px;
+                        display: flex;
+                        align-items: center;
+
+                        &:before {
+                            content: '';
+                            display: block;
+                            width: 15px;
+                            height: 1px;
+                            background-color: white;
+                            margin-right: var(--subline);
+                        }
+                    }
+
+                    >address,
+                    >.phone {
+                        font-style: normal;
+                        font-size: 22px;
+                        line-height: 33px;
+                        letter-spacing: 0.5px;
+                        padding-left: 15px;
+                        color: grey;
+                    }
+
+                    >.phone {
+                        display: block;
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+
+
+    }
+}

@@ -1,0 +1,151 @@
+@import './font-settings.scss';
+
+@mixin base-font() {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: $font-size1;
+    font-weight: 300;
+    text-decoration: none;
+    text-transform: lowercase;
+    color: rgba(0, 12, 12, 1);
+}
+
+@mixin photografer-heading-1() {
+    font-family: "Piazzolla", serif;
+    font-size: var(--size);
+    font-weight: 600;
+    line-height: 1.3em;
+    letter-spacing: 0.015em;
+    text-transform: unset; // lowercase | uppercase | unset
+    text-decoration: unset; // underline | зачеркнутый | unset
+    // can edit in other scss files
+    text-align: left;
+    color: #000;
+
+    &::selection {
+        color: #fff;
+        background-color: #000;
+    }
+
+    &.inverse {
+        color: #fff;
+
+        &::selection {
+            color: #000;
+            background-color: #fff;
+        }
+    }
+
+    &.error {
+        color: rgb(230, 22, 22);
+    }
+
+    // &.regular{
+    //     font-weight: 400;
+    // }
+    // &.black{
+    //     font-weight: 900;
+    // }
+    @media screen and (min-width: 1499px) {
+        --size: 120px;
+    }
+
+    @media screen and (max-width: 1500px) and (min-width: 767px) {
+        --size: 106px;
+    }
+
+    @media screen and (max-width: 768px) {
+        --size: 89px;
+    }
+}
+
+@mixin photografer-heading-2() {
+    font-family: "Piazzolla", serif;
+    font-weight: 600;
+    line-height: 1.2em;
+    // letter-spacing: 0.1em;
+    text-transform: unset;
+    text-decoration: unset;
+    text-align: left;
+    color: #000;
+
+    @media screen and (min-width: 1499px) {
+        font-size: 32px;
+    }
+
+    @media screen and (max-width: 1500px) and (min-width: 767px) {
+        font-size: 26px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 26px;
+    }
+}
+
+@mixin photografer-heading-3() {
+    font-family: "Piazzolla", serif;
+    font-weight: 600;
+    line-height: 1.2em;
+    letter-spacing: 0.1em;
+    text-transform: unset;
+    text-decoration: unset;
+    text-align: end;
+    color: #000;
+
+    @media screen and (min-width: 1499px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 1500px) and (min-width: 767px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 18px;
+    }
+}
+
+@mixin photographer-uppercase-heading() {
+    font-family: "Piazzolla", serif;
+    font-weight: 400;
+    line-height: 1.2em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: unset;
+    text-align: left;
+    color: #000;
+
+    @media screen and (min-width: 1499px) {
+        font-size: 15px;
+    }
+
+    @media screen and (max-width: 1500px) and (min-width: 767px) {
+        font-size: 15px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 13px;
+    }
+}
+
+@mixin photographer-base-text() {
+    font-family: "Piazzolla", serif;
+    font-weight: 400;
+    line-height: 1.6em;
+    letter-spacing: 0.01em;
+    text-transform: unset;
+    text-decoration: unset;
+    text-align: justify;
+    color: #000;
+
+    @media screen and (min-width: 1499px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 1500px) and (min-width: 767px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,9 @@
+<div [ngClass]="{'input-wrapper': true, 'invalid': isError}">
+    <p>{{title}}</p>
+    <input
+        [attr.type]="type"
+        [attr.placeholder]="placeholder"
+        [attr.value]="value"
+        (input)="inputOnChange($event)"
+    >
+</div>
