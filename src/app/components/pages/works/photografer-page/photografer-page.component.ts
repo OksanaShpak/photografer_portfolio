@@ -31,6 +31,7 @@ export class PhotograferPageComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnInit(): void {
+    document.documentElement.classList.add('no-scroll');
   }
   ngAfterViewInit(): void {
     this.scrollWrapperDOM = document.querySelector('app-photografer-page');
@@ -98,6 +99,7 @@ export class PhotograferPageComponent implements OnInit, AfterViewInit, OnDestro
 
   ngOnDestroy(): void {
     this.scrollWrapperDOM.removeEventListener('scroll', this.scrollAnimationFunction);
+    document.documentElement.classList.remove('no-scroll');
   }
 
 
