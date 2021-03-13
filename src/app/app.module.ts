@@ -11,6 +11,7 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { PhotograferPageComponent } from './components/pages/works/photografer-page/photografer-page.component';
 import { PrInputComponent } from './components/--primitives/pr-input/pr-input.component';
 import { MotorcycleSliderComponent } from './components/pages/works/motorcycle-slider/motorcycle-slider.component';
+import { PrPromisesCheckerComponent } from './components/--primitives/pr-promises-checker/pr-promises-checker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'work-photografer', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
     HomePageComponent,
     PhotograferPageComponent,
     PrInputComponent,
-    MotorcycleSliderComponent
+    MotorcycleSliderComponent,
+    PrPromisesCheckerComponent
   ],
   imports: [
     BrowserModule,

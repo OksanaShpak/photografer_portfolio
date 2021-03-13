@@ -70,8 +70,9 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
     
     document.documentElement.classList.add('no-scroll');
     this.isPopUpInView = false;
-    this.isSwiping = false;
+    this.isSwiping = true; // hack for disable trasition
     this.activeSlideId = 0;
+    this.setNeighbors();
     this.el.nativeElement.style.setProperty('--bg-color', `${this.slides[this.activeSlideId].backgroundColor}`);
     // document.documentElement.classList.remove('no-scroll');
     // document.documentElement.classList.contains('no-scroll');
@@ -124,6 +125,11 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
     this.titlesDOM = this.slider.nativeElement.querySelectorAll('h2');
     this.subtitlesDOM = this.slider.nativeElement.querySelectorAll('p');
     this.checkSlidersSpacing();
+    
+    this.imagesDOM[this.activeSlideId].style.transform = `translateY(0px)`;
+    this.imagesDOM[this.nextSlideId].style.transform = `translateY(calc(100% + ${this.slidersSpacing}px))`;
+    this.imagesDOM[this.previousSlideId].style.transform = `translateY(calc(-100% - ${this.slidersSpacing}px))`;
+    this.isSwiping = false; // hack for enable trasition
   }
 
   checkSlidersSpacing() {

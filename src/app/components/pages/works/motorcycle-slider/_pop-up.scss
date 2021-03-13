@@ -76,13 +76,25 @@
                         }
                     }
 
-                    &:hover {
-                        >span {
-                            color: white;
+                    
+                    @media (pointer: coarse) {
+                        &:active {
+                            >span {
+                                color: white;
+                            }
+                            >.item::before {
+                                width: 100%;
+                            }
                         }
-
-                        >.item::before {
-                            width: 100%;
+                    }
+                    @media (pointer: fine) {
+                        &:hover {
+                            >span {
+                                color: white;
+                            }
+                            >.item::before {
+                                width: 100%;
+                            }
                         }
                     }
                 }
