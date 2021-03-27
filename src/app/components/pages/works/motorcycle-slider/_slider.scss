@@ -58,7 +58,7 @@
                 height: 100%;
 
                 &:not(.current) {
-                    >h2 {
+                    >.title, >.subtitle {
                         opacity: 0;
                     }
 
@@ -69,7 +69,10 @@
                     }
                 }
 
-                p {
+                .subtitle {
+                    opacity: 1;
+                    transition: opacity 0.3s ease-out;
+                    //
                     writing-mode: vertical-lr;
                     position: absolute;
                     top: 0;
@@ -82,7 +85,10 @@
                     text-transform: uppercase;
                 }
 
-                h2 {
+                .title {
+                    opacity: 1;
+                    transition: opacity 0.3s ease-out;
+                    //
                     font-weight: 600;
                     font-size: 100px;
                     line-height: 1em;
@@ -90,8 +96,6 @@
                     top: calc(100% - 0.65em);
                     left: -35px;
                     // left: calc(var(--subline) * -6);
-                    transition: opacity 0.3s ease-out;
-                    opacity: 1;
                     z-index: 2;
                 }
 
@@ -118,7 +122,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
+            @media (pointer: fine) {
+                &:hover{
+                    cursor: grab;
+                }
+                &:active{
+                    cursor: grabbing;
+                }
+            }
+            >*, &:before, &:after {
+                pointer-events: none;
+                user-select: none;
+            }
             &:before {
                 content: '';
                 display: block;
@@ -163,9 +178,20 @@
         >.content {
             >ul {
                 >li {
+                    >.title {
+                        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+                    }
+                    >.subtitle {
+                        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+                    }
                     >img {
                         transform: scale(1) translate(0px, 0px);
-                        transition: transform .3s ease-out;
+                        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+                    }
+                    &.current{
+                        >img {
+                            opacity: 1;
+                        }
                     }
                 }
             }

@@ -51,9 +51,9 @@
                                 : i === activeSlideId + 1 ? true : false
                                 : false
                     }">
-                    <img [attr.src]="slide.imagePath">
-                    <p>{{slide.subtitle}}</p>
-                    <h2>{{slide.title}}</h2>
+                    <img class="slide-illustration" [attr.src]="slide.imagePath">
+                    <p class="subtitle">{{slide.subtitle}}</p>
+                    <h2 class="title">{{slide.title}}</h2>
                 </li>
             </ul>
         </div>

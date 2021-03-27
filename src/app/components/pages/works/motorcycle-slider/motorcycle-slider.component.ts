@@ -115,9 +115,9 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
     swipe.onToucheEnd(() => { this.swipeEnd(swipe); });
     swipe.run();
     // need to rewrite after slides content updated for component with dynamic content 
-    this.imagesDOM = this.slider.nativeElement.querySelectorAll('img');
-    this.titlesDOM = this.slider.nativeElement.querySelectorAll('h2');
-    this.subtitlesDOM = this.slider.nativeElement.querySelectorAll('p');
+    this.imagesDOM = this.slider.nativeElement.querySelectorAll('.slide-illustration');
+    this.titlesDOM = this.slider.nativeElement.querySelectorAll('.title');
+    this.subtitlesDOM = this.slider.nativeElement.querySelectorAll('.subtitle');
     this.checkSlidersSpacing();
     
     this.imagesDOM[this.activeSlideId].style.transform = `translateY(0px)`;
@@ -139,15 +139,19 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
     this.isInDrag = true;
     this.checkSlidersSpacing();
     this.setNeighbors();
+    this.imagesDOM[this.activeSlideId].style.setProperty('opacity', `1`);
+    this.imagesDOM[this.previousSlideId].style.setProperty('opacity', `1`);
+    this.imagesDOM[this.nextSlideId].style.setProperty('opacity', `1`);
   }
 
   swiping(swipe: Swipe) {
     this.isSwiping = true;
-    this.setTransformStyles(swipe.yDiff * -1, 'vertical', this.imagesDOM);
+    this.setTransformStyles(swipe.yDiff * -1, 'vertical-default', this.imagesDOM);
     if (Math.abs(swipe.yDiff) <= this.slidersSpacing ) {
-      this.setTransformStyles(swipe.yDiff * 0.5, 'vertical', this.dragCTA.nativeElement);
+      this.setTransformStyles(swipe.yDiff * 0.5, 'vertical-default', this.dragCTA.nativeElement);
     }
     this.setTransformStyles(swipe.yDiff, 'vertical-by-per', this.titlesDOM);
+    this.setTransformStyles(swipe.yDiff, 'horizontal-by-per bonus-rotate', this.subtitlesDOM);
   }
 
   swipeEnd(swipe: Swipe) {
@@ -165,11 +169,20 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
         this.setNeighbors();
       } 
     }
-    this.imagesDOM[this.activeSlideId].style.transform = `translateY(0px)`;
+    this.dragCTA.nativeElement.style.transform = `translateY(0px)`;
+    // images
+    this.imagesDOM[this.activeSlideId].style.transform = `translateY(0px) `;
     this.imagesDOM[this.nextSlideId].style.transform = `translateY(calc(100% + ${this.slidersSpacing}px))`;
     this.imagesDOM[this.previousSlideId].style.transform = `translateY(calc(-100% - ${this.slidersSpacing}px))`;
-    this.dragCTA.nativeElement.style.transform = `translateY(0px)`;
+    this.imagesDOM[this.activeSlideId].style.removeProperty('opacity');
+    // title
     this.titlesDOM[this.activeSlideId].style.transform = `translateY(0%)`;
+    this.titlesDOM[this.nextSlideId].style.transform = `translateY(100%)`;
+    this.titlesDOM[this.previousSlideId].style.transform = `translateY(-100%)`;
+    // subtitle
+    this.subtitlesDOM[this.activeSlideId].style.transform = `translateX(0%) rotate(-180deg)`;
+    this.subtitlesDOM[this.nextSlideId].style.transform = `translateX(100%) rotate(-180deg)`;
+    this.subtitlesDOM[this.previousSlideId].style.transform = `translateX(-100%) rotate(-180deg)`;
   }
 
   
@@ -203,21 +216,31 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
   }
 
   setTransformStyles(shift: number, type: string, DOMElement: any) {
-    if (type === 'vertical') {
+    if (type.includes('vertical-default')) {
       if (DOMElement.length) {
-        DOMElement[this.activeSlideId].style.transform = `translateY(${shift}px)`;
+        // precent from 0 to 1
+        const percents = Math.abs(shift / this.swipeArea.nativeElement.getBoundingClientRect().height);
+        DOMElement[this.activeSlideId].style.setProperty('opacity', `${1 - percents}`);
+        DOMElement[this.activeSlideId].style.setProperty('transform', `translateY(${shift}px) scale(${1 - (percents > 0.25 ? 0.25 : percents)})`);
         if (shift < 0 ) {
           DOMElement[this.nextSlideId].style.transform = `translateY(calc(100% + ${this.slidersSpacing}px + ${shift}px))`;
         } else {
           DOMElement[this.previousSlideId].style.transform = `translateY(calc(-100% - ${this.slidersSpacing}px + ${shift}px))`;
+          
         }
       } else {
         DOMElement.style.transform = `translateY(${shift}px)`;
       }
-    }
-    if (type === 'vertical-by-per') {
+    } else if (type.includes('vertical-by-per')) {
+      // precent from 0 to 100 (default)
       const percents = shift * 100 / this.swipeArea.nativeElement.getBoundingClientRect().height;
       DOMElement[this.activeSlideId].style.transform = `translateY(${percents}%)`;
+    } else if (type.includes('horizontal-by-per')) {
+      // precent from 0 to 100 (default)
+      const percents = shift * -100 / this.swipeArea.nativeElement.getBoundingClientRect().height;
+      DOMElement[this.activeSlideId].style.transform = `translateX(${percents}%) ${type.includes('bonus-rotate') ? 'rotate(-180deg)' : ''}`;
+      DOMElement[this.nextSlideId].style.transform = `translateX(${percents}%) ${type.includes('bonus-rotate') ? 'rotate(-180deg)' : ''}`;
+      DOMElement[this.previousSlideId].style.transform = `translateX(${percents}%) ${type.includes('bonus-rotate') ? 'rotate(-180deg)' : ''}`;
     }
   }
 
