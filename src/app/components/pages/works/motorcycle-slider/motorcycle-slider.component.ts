@@ -94,9 +94,6 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
 
     
 
-
-
-
     // let array1 = ['word', 'word'];
     // let array1 = new Array(2).fill('word');
     // let array2 = new Array(5).fill('dog');
@@ -105,9 +102,6 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
     // console.log(array1, array2);
     // array2.push('cat');
     // console.log(array1, array2);
-
-
-
   }
 
   ngOnInit(): void {
@@ -209,7 +203,6 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
   }
 
   setTransformStyles(shift: number, type: string, DOMElement: any) {
-    console.log(shift, type);
     if (type === 'vertical') {
       if (DOMElement.length) {
         DOMElement[this.activeSlideId].style.transform = `translateY(${shift}px)`;
@@ -223,7 +216,7 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
       }
     }
     if (type === 'vertical-by-per') {
-      const percents = this.swipeArea.nativeElement.getBoundingClientRect().height / shift;
+      const percents = shift * 100 / this.swipeArea.nativeElement.getBoundingClientRect().height;
       DOMElement[this.activeSlideId].style.transform = `translateY(${percents}%)`;
     }
   }
