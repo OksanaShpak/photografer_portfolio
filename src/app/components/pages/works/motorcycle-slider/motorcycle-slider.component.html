@@ -52,9 +52,49 @@
                                 : false
                     }">
                     <img class="slide-illustration" [attr.src]="slide.imagePath">
-                    <p class="subtitle">{{slide.subtitle}}</p>
-                    <h2 class="title">{{slide.title}}</h2>
                 </li>
+                <ul class="subtitle-wrraper">
+                    <li *ngFor="let slide of slides; let i = index" [ngClass]="{
+                        'current': i === activeSlideId,
+                        'subtitle': true,
+                        'previous': slides.length > 1 ?
+                                    activeSlideId === 0 && i === slides.length - 1 ? true
+                                    : activeSlideId === slides.length - 1 && i === 0 ? false
+                                    : i === activeSlideId - 1 ? true : false
+                                    : false,
+                        'next': slides.length > 1 ?
+                                activeSlideId === slides.length - 1 && i === 0 ? true
+                                : activeSlideId === 0 && i === slides.length - 1 ? false
+                                : i === activeSlideId + 1 ? true : false
+                                : false
+                    }">{{slide.subtitle}}</li>
+                    <li 
+                        *ngIf="slides?.length>0" 
+                        class="hidden-object current subtitle">
+                        {{slides[activeSlideId]?.subtitle}}
+                    </li>
+                </ul>
+                <ul class="title-wrraper">
+                    <li *ngFor="let slide of slides; let i = index" [ngClass]="{
+                        'current': i === activeSlideId,
+                        'title': true,
+                        'previous': slides.length > 1 ?
+                                    activeSlideId === 0 && i === slides.length - 1 ? true
+                                    : activeSlideId === slides.length - 1 && i === 0 ? false
+                                    : i === activeSlideId - 1 ? true : false
+                                    : false,
+                        'next': slides.length > 1 ?
+                                activeSlideId === slides.length - 1 && i === 0 ? true
+                                : activeSlideId === 0 && i === slides.length - 1 ? false
+                                : i === activeSlideId + 1 ? true : false
+                                : false
+                    }">{{slide.title}}</li>
+                    <li 
+                        *ngIf="slides?.length>0" 
+                        class="hidden-object current title">
+                        {{slides[activeSlideId]?.title}}
+                    </li>
+                </ul>
             </ul>
         </div>
 

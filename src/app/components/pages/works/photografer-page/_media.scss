@@ -3,8 +3,17 @@
         .about {
 
             &__substrate {
-                height: 55%;
+                height: 50%;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .about {
+
+        &__substrate {
+            height: 45%;
         }
     }
 }
@@ -20,7 +29,7 @@
             margin-top: 150px;
 
             &__substrate {
-                height: 45%;
+                height: 40%;
             }
         }
 
@@ -43,7 +52,7 @@
         .about {
 
             &__substrate {
-                height: 33%;
+                height: 35%;
             }
 
             &__inner {
@@ -93,6 +102,10 @@
 
         .about {
             margin-top: 120px;
+
+            &__substrate {
+                height: 30%;
+            }
 
             &__inner {
                 &-left-side {
