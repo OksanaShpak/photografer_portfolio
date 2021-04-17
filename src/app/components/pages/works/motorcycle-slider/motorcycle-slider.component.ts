@@ -242,21 +242,28 @@ export class MotorcycleSliderComponent implements OnInit, AfterViewInit {
       }
     } else if (type.includes('vertical-by-per')) {
       // precent from 0 to 100 (default)
-      const percents = shift * 100 / this.swipeArea.nativeElement.getBoundingClientRect().height;
+      const percents = -shift * 100 / this.swipeArea.nativeElement.getBoundingClientRect().height;
       DOMElement[this.activeSlideId].style.transform = `translateY(${percents}%)`;
+      // TODO to remove or not
+      if (shift < 0 ) {
+        DOMElement[this.previousSlideId].style.transform = `translateY(calc(-100% + ${percents}%))`;
+      } else {
+        DOMElement[this.nextSlideId].style.transform = `translateY(calc(100% + ${percents}%))`;
+      }
+      //
     } else if (type.includes('horizontal-by-per')) {
       // precent from 0 to 100 (default)
       const percents = shift * -100 / this.swipeArea.nativeElement.getBoundingClientRect().height;
       DOMElement[this.activeSlideId].style.transform = `translateX(${percents}%) `;
+      // TODO to remove or not
       if (shift < 0 ) {
-        // DOMElement[this.nextSlideId].style.transform = `translateY(calc(100% + ${this.slidersSpacing}px + ${shift}px))`;
-        DOMElement[this.nextSlideId].style.transform = `translateX(calc(100%-${percents}%))`;
+        DOMElement[this.previousSlideId].style.transform = `translateX(calc(-100% + ${percents}%))`;
       } else {
-        // DOMElement[this.previousSlideId].style.transform = `translateY(calc(-100% - ${this.slidersSpacing}px + ${shift}px))`;
-        DOMElement[this.previousSlideId].style.transform = `translateX(calc (-100% + ${percents}%) `;
+        DOMElement[this.nextSlideId].style.transform = `translateX(calc(100% + ${percents}%))`;
+      }
+      //
     }
   }
- }
 
   popUpToggle(){
     this.isPopUpInView = !this.isPopUpInView;

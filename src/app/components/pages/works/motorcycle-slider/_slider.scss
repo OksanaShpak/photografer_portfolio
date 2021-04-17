@@ -88,14 +88,12 @@
 
                 >:not(.hidden-object) {
                     position: absolute;
-
-                    >.title {
+                    &.title {
                         bottom: 0;
                         left: 0;
                     }
-
-                    >.subtitle {
-                        top: 0;
+                    &.subtitle {
+                        bottom: 0;
                         right: 0;
                     }
                 }
@@ -105,14 +103,20 @@
                 transform: rotate(-180deg);
                 top: 0;
                 left: -35px;
+                height: 100%;
                 display: flex;
             }
 
             .title-wrraper {
                 top: calc(100% - 0.95em);
                 left: -35px;
+                width: 100%;
                 z-index: 2;
                 font-size: 100px;
+            }
+
+            .subtitle, .title {
+                white-space: nowrap;
             }
 
             .subtitle {
